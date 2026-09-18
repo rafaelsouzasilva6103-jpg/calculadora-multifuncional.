@@ -1,32 +1,66 @@
-name: Automação da Calculadora
+function somar() {
+    let numero1 = Number(document.getElementById("numero1").value);
+    let numero2 = Number(document.getElementById("numero2").value);
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    let resultado = numero1 + numero2;
 
-jobs:
-  verificar-projeto:
-    runs-on: ubuntu-latest
+    document.getElementById("resultado").innerHTML = "Resultado: " + resultado;
+}
 
-    steps:
-      - name: Baixar o código do projeto
-        uses: actions/checkout@v4
+function subtrair() {
+    let numero1 = Number(document.getElementById("numero1").value);
+    let numero2 = Number(document.getElementById("numero2").value);
 
-      - name: Verificar arquivos principais
-        run: |
-          echo "Verificando estrutura da Calculadora Multifuncional..."
-          test -f index.html
-          test -f style.css
-          test -f script.js
-          echo "Todos os arquivos principais foram encontrados!"
+    let resultado = numero1 - numero2;
 
-      - name: Finalizar automação
-        run: |
-          echo "===================================="
-          echo "Automação executada com sucesso!"
-          echo "Calculadora Multifuncional"
-          echo "===================================="
+    document.getElementById("resultado").innerHTML = "Resultado: " + resultado;
+}
+
+function multiplicar() {
+    let numero1 = Number(document.getElementById("numero1").value);
+    let numero2 = Number(document.getElementById("numero2").value);
+
+    let resultado = numero1 * numero2;
+
+    document.getElementById("resultado").innerHTML = "Resultado: " + resultado;
+}
+
+function dividir() {
+    let numero1 = Number(document.getElementById("numero1").value);
+    let numero2 = Number(document.getElementById("numero2").value);
+
+    if (numero2 === 0) {
+        document.getElementById("resultado").innerHTML = "Não é possível dividir por zero.";
+        return;
+    }
+
+    let resultado = numero1 / numero2;
+
+    document.getElementById("resultado").innerHTML = "Resultado: " + resultado;
+}
+
+function porcentagem() {
+    let numero1 = Number(document.getElementById("numero1").value);
+    let numero2 = Number(document.getElementById("numero2").value);
+
+    let resultado = (numero1 * numero2) / 100;
+
+    document.getElementById("resultado").innerHTML = "Resultado: " + resultado + "%";
+}
+
+function adicionarVirgula() {
+    let input1 = document.getElementById("numero1");
+    let input2 = document.getElementById("numero2");
+
+    if (document.activeElement === input1 && !input1.value.includes(".")) {
+        input1.value += ".";
+    } else if (document.activeElement === input2 && !input2.value.includes(".")) {
+        input2.value += ".";
+    }
+}
+
+function limpar() {
+    document.getElementById("numero1").value = "";
+    document.getElementById("numero2").value = "";
+    document.getElementById("resultado").innerHTML = "Resultado:";
+}
